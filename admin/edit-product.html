@@ -1,0 +1,85 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Product</title><style>
+body{
+background:#111;
+color:white;
+font-family:Arial,sans-serif;
+padding:20px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#ffd700;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+</style></head>
+<body><h1>Edit Product</h1><input type="text" id="name" placeholder="Product Name">
+<input type="number" id="price" placeholder="Price">
+<input type="text" id="size" placeholder="Size"><select id="category">
+<option>Men</option>
+<option>Women</option>
+<option>Kids</option>
+<option>Sale</option>
+<option>Accessories</option>
+<option>Footwear</option>
+</select><input type="text" id="image" placeholder="Image URL"><button id="saveBtn">Update Product</button>
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+doc,
+getDoc,
+updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const productRef = doc(db,"products",id);
+const productSnap = await getDoc(productRef);
+
+if(productSnap.exists()){
+
+const product = productSnap.data();
+
+document.getElementById("name").value = product.name || "";
+document.getElementById("price").value = product.price || "";
+document.getElementById("size").value = product.size || "";
+document.getElementById("category").value = product.category || "";
+document.getElementById("image").value = product.image || "";
+
+}
+
+document.getElementById("saveBtn").addEventListener("click", async()=>{
+
+await updateDoc(productRef,{
+name:document.getElementById("name").value,
+price:document.getElementById("price").value,
+size:document.getElementById("size").value,
+category:document.getElementById("category").value,
+image:document.getElementById("image").value
+});
+
+alert("Product Updated");
+
+});
+
+</script></body>
+</html>
