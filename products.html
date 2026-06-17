@@ -7,11 +7,15 @@ getDocs
 const productsDiv = document.getElementById("products");
 
 const querySnapshot = await getDocs(collection(db,"products"));
-
+const params = new URLSearchParams(window.location.search);
+const selectedCategory = params.get("category");
 querySnapshot.forEach((doc) => {
 
 const product = doc.data();
 
+if(selectedCategory && product.category !== selectedCategory){
+return;
+}
 productsDiv.innerHTML += `
 <a href="product.html?id=${doc.id}" style="text-decoration:none;color:black;display:block;">
 
