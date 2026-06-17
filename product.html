@@ -3,5 +3,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Details</title>
-</head><body><h1>Product Details Page Working</h1><p>If you see this page, product.html is connected correctly.</p></body>
+</head><body><div id="product"></div><script type="module">
+
+import { db } from "./admin/firebase.js";
+
+import {
+doc,
+getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const params = new URLSearchParams(window.location.search);
+
+const id = params.get("id");
+
+const productRef = doc(db,"products",id);
+
+const productSnap = await getDoc(productRef);
+
+if(productSnap.exists()){
+
+const product = productSnap.data();
+
+document.getElementById("product").innerHTML = `
+
+<h1>${product.name}</h1>
+
+<img src="${product.image}" width="300">
+
+<br><br>
+
+<img src="${product.image2 || ''}" width="300">
+
+<br><br>
+
+<img src="${product.image3 || ''}" width="300">
+
+<p>Price: ₹${product.price}</p>
+
+<p>Size: ${product.size}</p>
+
+<p>Category: ${product.category}</p>
+
+<a href="${product.video || '#'}" target="_blank">
+Watch Video
+</a>
+
+<br><br>
+
+<a href="https://wa.me/91YOURNUMBER?text=I want ${product.name}">
+Order On WhatsApp
+</a>
+
+`;
+
+}
+
+</script></body>
 </html>
