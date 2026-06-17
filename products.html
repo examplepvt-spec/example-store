@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>All Products</h1>
-
-<div id="products"></div>
-
-<script type="module">
+<!DOCTYPE html><html>
+<body><h1>All Products</h1><div id="products"></div><script type="module">
 
 import { db } from "./admin/firebase.js";
 
@@ -24,18 +17,26 @@ querySnapshot.forEach((doc) => {
 const product = doc.data();
 
 productsDiv.innerHTML += `
+<a href="product.html?id=${doc.id}" style="text-decoration:none;color:black;">
+
 <div style="border:1px solid #ddd;padding:15px;margin:10px;">
+
 <img src="${product.image}" style="width:200px;height:auto;">
+
 <h3>${product.name}</h3>
+
 <p>₹${product.price}</p>
+
 <p>${product.size}</p>
+
 <p>${product.category}</p>
+
 </div>
+
+</a>
 `;
 
 });
 
-</script>
-
-</body>
+</script></body>
 </html>
