@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Product</title>
+
+<style>
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#ffd700;
+border:none;
+border-radius:8px;
+font-weight:bold;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Admin Page</h1>
+<h1>Add Product</h1>
+
+<input type="text" placeholder="Product Name">
+
+<input type="number" placeholder="Price">
+
+<input type="text" placeholder="Size">
+
+<select>
+<option>Men</option>
+<option>Women</option>
+<option>Kids</option>
+</select>
+
+<input type="text" placeholder="Image URL">
+
+<button>SAVE PRODUCT</button>
 
 </body>
 </html>
