@@ -1,105 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Product</title>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-<style>
-body{
-background:#111;
-color:white;
-font-family:Arial,sans-serif;
-padding:20px;
-}
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBE4RSDLkGFclHv-90eCPZlwSCvaKr27Po",
+  authDomain: "example-clothing.firebaseapp.com",
+  projectId: "example-clothing",
+  storageBucket: "example-clothing.firebasestorage.app",
+  messagingSenderId: "365541402622",
+  appId: "1:365541402622:web:129d716d298bb2de9342af",
+  measurementId: "G-MQS6NQF4ZG"
+};
 
-h1{
-text-align:center;
-}
-
-input,select{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:none;
-border-radius:8px;
-box-sizing:border-box;
-}
-
-button{
-width:100%;
-padding:14px;
-background:#ffd700;
-border:none;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-}
-</style>
-</head>
-
-<body>
-
-<h1>Add Product</h1>
-
-<input type="text" id="name" placeholder="Product Name">
-
-<input type="number" id="price" placeholder="Price">
-
-<input type="text" id="size" placeholder="Size">
-
-<select id="category">
-<option>Men</option>
-<option>Women</option>
-<option>Kids</option>
-</select>
-
-<input type="text" id="image" placeholder="Image URL">
-
-<button id="saveBtn">SAVE PRODUCT</button>
-
-<script type="module">
-
-import { db } from './firebase.js';
-
-import {
-collection,
-addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-document.getElementById("saveBtn").addEventListener("click", async () => {
-
-const name = document.getElementById("name").value;
-const price = document.getElementById("price").value;
-const size = document.getElementById("size").value;
-const category = document.getElementById("category").value;
-const image = document.getElementById("image").value;
-
-try {
-
-await addDoc(collection(db, "products"), {
-name,
-price,
-size,
-category,
-image
-});
-
-alert("Product Saved Successfully");
-
-document.getElementById("name").value="";
-document.getElementById("price").value="";
-document.getElementById("size").value="";
-document.getElementById("image").value="";
-
-}
-catch(error){
-alert(error.message);
-}
-
-});
-
-</script>
-
-</body>
-</html>
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
