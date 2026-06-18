@@ -31,6 +31,8 @@ cursor:pointer;
 <body><h1>Edit Product</h1><input type="text" id="name" placeholder="Product Name">
 <input type="number" id="price" placeholder="Price">
 <input type="text" id="size" placeholder="Size"><select id="category">
+<input type="text" id="barcode" placeholder="Barcode">
+<input type="number" id="stock" placeholder="Stock">
 <option>Men</option>
 <option>Women</option>
 <option>Kids</option>
@@ -38,7 +40,9 @@ cursor:pointer;
 <option>Accessories</option>
 <option>Footwear</option>
 </select><input type="text" id="image" placeholder="Image URL"><button id="saveBtn">Update Product</button>
-
+<input type="text" id="image2" placeholder="Image 2 URL">
+<input type="text" id="image3" placeholder="Image 3 URL">
+<input type="text" id="video" placeholder="Video URL">
 <script type="module">
 
 import { db } from "./firebase.js";
@@ -64,7 +68,11 @@ document.getElementById("price").value = product.price || "";
 document.getElementById("size").value = product.size || "";
 document.getElementById("category").value = product.category || "";
 document.getElementById("image").value = product.image || "";
-
+document.getElementById("barcode").value = product.barcode || "";
+document.getElementById("stock").value = product.stock || "";
+document.getElementById("image2").value = product.image2 || "";
+document.getElementById("image3").value = product.image3 || "";
+document.getElementById("video").value = product.video || "";
 }
 
 document.getElementById("saveBtn").addEventListener("click", async()=>{
@@ -73,8 +81,13 @@ await updateDoc(productRef,{
 name:document.getElementById("name").value,
 price:document.getElementById("price").value,
 size:document.getElementById("size").value,
+barcode:document.getElementById("barcode").value,
+stock:document.getElementById("stock").value,
 category:document.getElementById("category").value,
-image:document.getElementById("image").value
+image:document.getElementById("image").value,
+image2:document.getElementById("image2").value,
+image3:document.getElementById("image3").value,
+video:document.getElementById("video").value
 });
 
 alert("Product Updated");
