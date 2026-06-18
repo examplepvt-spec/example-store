@@ -69,6 +69,12 @@ productsDiv.innerHTML += `
 
 <p>${product.category}</p>
 
+<a href="edit-product.html?id=${productDoc.id}">
+<button style="background:green;">
+Edit
+</button>
+</a>
+
 <button onclick="deleteProduct('${productDoc.id}')">
 Delete
 </button>
