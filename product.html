@@ -41,7 +41,9 @@ document.getElementById("product").innerHTML = `
 <p>Price: ₹${product.price}</p>
 
 <p>Size: ${product.size}</p>
+<p>Barcode: ${product.barcode || 'N/A'}</p>
 
+<p>Stock: ${product.stock || 0}</p>
 <p>Category: ${product.category}</p>
 
 <a href="${product.video || '#'}" target="_blank">
