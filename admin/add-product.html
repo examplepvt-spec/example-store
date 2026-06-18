@@ -47,7 +47,7 @@ cursor:pointer;
 <input type="number" id="price" placeholder="Price">
 
 <input type="text" id="size" placeholder="Size">
-
+<input type="number" id="stock" placeholder="Stock Quantity">
 <select id="category">
 <option>Men</option>
 <option>Women</option>
@@ -76,6 +76,7 @@ alert("Button Working");
 const name = document.getElementById("name").value;
 const price = document.getElementById("price").value;
 const size = document.getElementById("size").value;
+const stock = document.getElementById("stock").value;
 const category = document.getElementById("category").value;
 const image = document.getElementById("image").value;
 const image2 = document.getElementById("image2").value;
@@ -87,6 +88,7 @@ await addDoc(collection(db, "products"), {
 name,
 price,
 size,
+stock,
 category,
 image,
 image2,
