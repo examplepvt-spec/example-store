@@ -111,7 +111,15 @@ productsDiv.innerHTML += `
 <p>${product.category}</p>
 
 <p>Barcode: ${product.barcode || ""}</p>
+<p>Stock: ${product.stock || 0}</p>
 
+${
+(product.stock || 0) == 0
+? '<p style="color:red;font-weight:bold;">🔴 OUT OF STOCK</p>'
+: (product.stock || 0) <= 5
+? '<p style="color:orange;font-weight:bold;">🟠 LOW STOCK</p>'
+: '<p style="color:lime;font-weight:bold;">🟢 IN STOCK</p>'
+}
 <a href="edit-product.html?id=${productDoc.id}">
 <button style="background:green;">
 Edit
