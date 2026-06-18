@@ -104,7 +104,11 @@ productsDiv.innerHTML += `
 
 <img src="${product.image}" alt="">
 
-<h3>${product.name}</h3>
+<h3>
+<a href="../product-details.html?id=${productDoc.id}">
+${product.name}
+</a>
+</h3>
 
 <p>₹${product.price}</p>
 
