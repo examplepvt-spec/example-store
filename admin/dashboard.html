@@ -11,7 +11,14 @@ padding:20px;
 }
 
 h1{
-margin-bottom:30px;
+margin-bottom:20px;
+}
+
+.stats{
+background:#222;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
 }
 
 .btn{
@@ -25,14 +32,40 @@ border-radius:10px;
 font-weight:bold;
 text-align:center;
 }
-</style></head>
-<body><h1>Admin Dashboard</h1>
- <a href="add-product.html" class="btn">
+</style></head><body><h1>Admin Dashboard</h1><div class="stats" id="stats">
+Loading...
+</div><a href="add-product.html" class="btn">
 + Add Product
-</a>
-
-<a href="products-list.html" class="btn">
+</a><a href="products-list.html" class="btn">
 Products List
-</a>
-</body>
+</a><script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const querySnapshot = await getDocs(collection(db,"products"));
+
+let totalProducts = 0;
+let totalStock = 0;
+
+querySnapshot.forEach((doc)=>{
+
+const product = doc.data();
+
+totalProducts++;
+
+totalStock += Number(product.stock || 0);
+
+});
+
+document.getElementById("stats").innerHTML = `
+<h3>Total Products: ${totalProducts}</h3>
+<h3>Total Stock: ${totalStock}</h3>
+`;
+
+</script></body>
 </html>
