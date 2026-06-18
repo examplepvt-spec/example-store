@@ -40,7 +40,11 @@ text-decoration:none;
 <body><a href="dashboard.html">← Dashboard</a>
 
 <h1>Products List</h1><div id="products"></div><script type="module">
-
+<input
+type="text"
+id="search"
+placeholder="Search Name or Barcode"
+style="width:100%;padding:12px;margin-bottom:20px;border-radius:8px;">
 import { db } from "./firebase.js";
 
 import {
@@ -51,6 +55,7 @@ deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const productsDiv = document.getElementById("products");
+const searchInput = document.getElementById("search");
 const searchInput = document.getElementById("search");
 const querySnapshot = await getDocs(collection(db,"products"));
 
