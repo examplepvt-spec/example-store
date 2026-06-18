@@ -1,8 +1,11 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Products List</title><style>
+<title>Products List</title>
+
+<style>
 body{
 background:#111;
 color:white;
@@ -36,15 +39,34 @@ a{
 color:#ffd700;
 text-decoration:none;
 }
-</style></head>
-<body><a href="dashboard.html">← Dashboard</a>
 
-<h1>Products List</h1><div id="products"></div><script type="module">
+#search{
+width:100%;
+padding:12px;
+margin:20px 0;
+border:none;
+border-radius:8px;
+box-sizing:border-box;
+}
+</style>
+
+</head>
+
+<body>
+
+<a href="dashboard.html">← Dashboard</a>
+
+<h1>Products List</h1>
+
 <input
 type="text"
 id="search"
-placeholder="Search Name or Barcode"
-style="width:100%;padding:12px;margin-bottom:20px;border-radius:8px;">
+placeholder="Search Name or Barcode">
+
+<div id="products"></div>
+
+<script type="module">
+
 import { db } from "./firebase.js";
 
 import {
@@ -56,12 +78,28 @@ deleteDoc
 
 const productsDiv = document.getElementById("products");
 const searchInput = document.getElementById("search");
-const searchInput = document.getElementById("search");
+
 const querySnapshot = await getDocs(collection(db,"products"));
+
+function displayProducts(searchText=""){
+
+productsDiv.innerHTML = "";
 
 querySnapshot.forEach((productDoc)=>{
 
 const product = productDoc.data();
+
+const name = (product.name || "").toLowerCase();
+const barcode = (product.barcode || "").toLowerCase();
+const search = searchText.toLowerCase();
+
+if(
+search &&
+!name.includes(search) &&
+!barcode.includes(search)
+){
+return;
+}
 
 productsDiv.innerHTML += `
 <div class="card">
@@ -74,30 +112,12 @@ productsDiv.innerHTML += `
 
 <p>${product.category}</p>
 
+<p>Barcode: ${product.barcode || ""}</p>
+
 <a href="edit-product.html?id=${productDoc.id}">
 <button style="background:green;">
 Edit
 </button>
 </a>
 
-<button onclick="deleteProduct('${productDoc.id}')">
-Delete
-</button>
-
-</div>
-`;
-
-});
-
-window.deleteProduct = async(id)=>{
-
-await deleteDoc(doc(db,"products",id));
-
-alert("Product Deleted");
-
-location.reload();
-
-};
-
-</script></body>
-</html>
+<button onclick="deleteProduct('${productDoc.id
