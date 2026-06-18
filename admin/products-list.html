@@ -44,12 +44,10 @@ text-decoration:none;
 width:100%;
 padding:12px;
 margin:20px 0;
-border:none;
 border-radius:8px;
-box-sizing:border-box;
+border:none;
 }
 </style>
-
 </head>
 
 <body>
@@ -90,7 +88,7 @@ querySnapshot.forEach((productDoc)=>{
 const product = productDoc.data();
 
 const name = (product.name || "").toLowerCase();
-const barcode = (product.barcode || "").toLowerCase();
+const barcode = (product.barcode || "").toString().toLowerCase();
 const search = searchText.toLowerCase();
 
 if(
@@ -120,4 +118,34 @@ Edit
 </button>
 </a>
 
-<button onclick="deleteProduct('${productDoc.id
+<button onclick="deleteProduct('${productDoc.id}')">
+Delete
+</button>
+
+</div>
+`;
+
+});
+
+}
+
+displayProducts();
+
+searchInput.addEventListener("input", () => {
+displayProducts(searchInput.value);
+});
+
+window.deleteProduct = async(id)=>{
+
+await deleteDoc(doc(db,"products",id));
+
+alert("Product Deleted");
+
+location.reload();
+
+};
+
+</script>
+
+</body>
+</html>
