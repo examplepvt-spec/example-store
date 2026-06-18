@@ -55,7 +55,11 @@ cursor:pointer;
 </select>
 
 <input type="text" id="image" placeholder="Image URL">
+<input type="text" id="image2" placeholder="Image 2 URL">
 
+<input type="text" id="image3" placeholder="Image 3 URL">
+
+<input type="text" id="video" placeholder="Video URL">
 <button id="saveBtn">SAVE PRODUCT</button>
 
 <script type="module">
@@ -74,7 +78,9 @@ const price = document.getElementById("price").value;
 const size = document.getElementById("size").value;
 const category = document.getElementById("category").value;
 const image = document.getElementById("image").value;
-
+const image2 = document.getElementById("image2").value;
+const image3 = document.getElementById("image3").value;
+const video = document.getElementById("video").value;
 try {
 
 await addDoc(collection(db, "products"), {
@@ -82,7 +88,10 @@ name,
 price,
 size,
 category,
-image
+image,
+image2,
+image3,
+video
 });
 
 alert("Product Saved Successfully");
