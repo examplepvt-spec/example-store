@@ -84,6 +84,26 @@ const product = productSnap.data();
 
 document.getElementById("name").value = product.name || "";
 document.getElementById("price").value = product.price || "";
+document.getElementById("offerPrice").value =
+product.offerPrice || "";
+
+document.getElementById("xsStock").value =
+product.xsStock || "";
+
+document.getElementById("sStock").value =
+product.sStock || "";
+
+document.getElementById("mStock").value =
+product.mStock || "";
+
+document.getElementById("lStock").value =
+product.lStock || "";
+
+document.getElementById("xlStock").value =
+product.xlStock || "";
+
+document.getElementById("xxlStock").value =
+product.xxlStock || "";
 document.getElementById("size").value = product.size || "";
 document.getElementById("category").value = product.category || "";
 document.getElementById("image").value = product.image || "";
@@ -98,8 +118,29 @@ document.getElementById("saveBtn").addEventListener("click", async()=>{
 
 await updateDoc(productRef,{
 name:document.getElementById("name").value,
+name:document.getElementById("name").value,
+
 price:document.getElementById("price").value,
+
+offerPrice:document.getElementById("offerPrice").value,
+
+xsStock:document.getElementById("xsStock").value,
+
+sStock:document.getElementById("sStock").value,
+
+mStock:document.getElementById("mStock").value,
+
+lStock:document.getElementById("lStock").value,
+
+xlStock:document.getElementById("xlStock").value,
+
+xxlStock:document.getElementById("xxlStock").value,
+
 size:document.getElementById("size").value,
+
+barcode:document.getElementById("barcode").value,
+
+stock:document.getElementById("stock").value,
 barcode:document.getElementById("barcode").value,
 stock:document.getElementById("stock").value,
 category:document.getElementById("category").value,
