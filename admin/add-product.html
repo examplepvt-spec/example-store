@@ -47,6 +47,19 @@ cursor:pointer;
 <input type="number" id="price" placeholder="Price">
 
 <input type="text" id="size" placeholder="Size">
+<input type="number" id="xs" placeholder="XS Stock">
+
+<input type="number" id="s" placeholder="S Stock">
+
+<input type="number" id="m" placeholder="M Stock">
+
+<input type="number" id="l" placeholder="L Stock">
+
+<input type="number" id="xl" placeholder="XL Stock">
+
+<input type="number" id="xxl" placeholder="XXL Stock">
+
+<input type="number" id="offerPrice" placeholder="Offer Price">
 <input type="text" id="barcode" placeholder="Barcode">
 <input type="number" id="stock" placeholder="Stock Quantity">
 <select id="category">
@@ -97,19 +110,49 @@ const image = document.getElementById("image").value;
 const image2 = document.getElementById("image2").value;
 const image3 = document.getElementById("image3").value;
 const video = document.getElementById("video").value;
+  
+const offerPrice =
+document.getElementById("offerPrice").value;
+
+const xs =
+document.getElementById("xs").value;
+
+const s =
+document.getElementById("s").value;
+
+const m =
+document.getElementById("m").value;
+
+const l =
+document.getElementById("l").value;
+
+const xl =
+document.getElementById("xl").value;
+
+const xxl =
+document.getElementById("xxl").value;
 try {
 
 await addDoc(collection(db, "products"), {
 name,
 price,
+offerPrice,
 size,
-stock,
 barcode,
 category,
 image,
 image2,
 image3,
-video
+video,
+
+xs,
+s,
+m,
+l,
+xl,
+xxl,
+
+stock
 });
 alert("Product Saved Successfully");
 
