@@ -38,12 +38,34 @@ document.getElementById("product").innerHTML = `
 
 <img src="${product.image3 || ''}" width="300">
 
-<p>Price: ₹${product.price}</p>
+<p style="text-decoration:line-through;color:gray;">
+₹${product.price}
+</p>
+
+<h2>
+₹${product.offerPrice || product.price}
+</h2>
+
+<p style="color:orange;">
+${product.offerPrice ?
+Math.round(
+((product.price - product.offerPrice) /
+product.price) * 100
+) + "% OFF" : ""}
+</p>
 
 <p>Size: ${product.size}</p>
-<p>Barcode: ${product.barcode || 'N/A'}</p>
+
+<p>Barcode: ${product.barcode || "N/A"}</p>
 
 <p>Stock: ${product.stock || 0}</p>
+
+<p>XS: ${product.xsStock || 0}</p>
+<p>S: ${product.sStock || 0}</p>
+<p>M: ${product.mStock || 0}</p>
+<p>L: ${product.lStock || 0}</p>
+<p>XL: ${product.xlStock || 0}</p>
+<p>XXL: ${product.xxlStock || 0}</p>
 <p>Category: ${product.category}</p>
 
 <a href="${product.video || '#'}" target="_blank">
